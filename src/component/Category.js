@@ -19,7 +19,7 @@ const Category = () => {
 const deleteRouter =(id,image)=>{
   if(window.confirm('Are You Sure?'))
 {
-     axios.delete('https://mern-api-lake.vercel.app/category?id='+id+'&imageUrl='+image)
+     axios.delete('http://localhost:3000/category?id='+id+'&imageUrl='+image)
      .then(res=>{
        console.log(res);
        getData();
@@ -32,7 +32,7 @@ const deleteRouter =(id,image)=>{
 }
 const getData=  ()=>{
   console.log(localStorage.getItem('token'))
-  const res = axios.get('https://mern-api-lake.vercel.app/category', {
+   axios.get('http://localhost:3000/category', {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
@@ -42,7 +42,7 @@ const getData=  ()=>{
   .then(res=>{
     setHasError(false);
     setLoading(false);
-    console.log(res.data.category);
+    console.log(res.data);
     setCategoryList(res.data.category);
   })
   .catch(err=>{
@@ -68,13 +68,14 @@ const getData=  ()=>{
     </div>}
 
    { !isLoading && !hasError && <div>
-     <h1>Category List</h1>
+     <h1>To Do List</h1>
 
         <table>
           <thead>
              <tr>
               <th>Name</th>
               <th>Image</th>
+              <th>Date of Creation</th>
              </tr>
           </thead>
           <tbody>
@@ -88,12 +89,29 @@ const getData=  ()=>{
     </>
   )
 }
+function formatDate(date) {
+  if (!date) return ""; 
+  
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
 
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
 const Row =(props)=>{
   return (
   <tr>
     <td>{props.detail.name}</td>
     <td>{<img style={{width:'150px' , height:'80px'}} alt='phoyuu' src={props.detail.photo}/>}</td>
+    <td>{formatDate(props.detail.createdAt)}</td>
     <td><button onClick={()=>{props.detailReq(props.detail._id)}}>Detail</button></td>
     <td><button onClick={()=>{props.updateReq(props.detail._id)}} >Edit</button></td>
     <td><button onClick={()=>{props.deleteReq(props.detail._id,props.detail.photo)}}>Delete</button></td>

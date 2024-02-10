@@ -9,8 +9,9 @@ const MainNav = () => {
   }
   return (
     <>
-    <Link to='/dashboard'>Category List</Link>
-    <Link to="/dashboard/add-Category">Add New Category</Link>
+    <Link to='/dashboard'>To Do List</Link>
+    <br/>
+    <Link to="/dashboard/add-Category">Add New Work</Link>
     <br/>
     <p>Hello {localStorage.getItem('userName')}!!</p>
     <button onClick={logoutHandler}>Logout</button>

@@ -23,7 +23,7 @@ const AddCategory = () => {
      const formData = new FormData();
      formData.append('name',category);
      formData.append('photo',selectedFile);
-     axios.post('https://mern-api-lake.vercel.app/category',formData,{
+     axios.post('http://localhost:3000/category',formData,{
       
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -42,20 +42,15 @@ const AddCategory = () => {
         setHasError(true);
         setError(err.message);
      })
-    //  try {
-        //     const res = await axios.post('http://localhost:3000/category', formData);
-        //     console.log(res.data);
-        //  } catch (error) {
-        //     console.error(error);
-        //  }
+    
     }
   return (
     <>
     {isLoading && <div>
         <img style={{width:'150px'}} alt='hiha' src={loader}/>
     </div>}
-     {!isLoading && !hasError &&               <div>
-        <h1>Add Category</h1>
+     {!isLoading && !hasError &&   <div>
+        <h1>Add New Work</h1>
         <form onSubmit={SubmitHandler} >
             <input onChange={(e)=>{setCategory(e.target.value)}} type='text'/>
             <input onChange={(e)=>{fileHandler(e)}} type='file'/>

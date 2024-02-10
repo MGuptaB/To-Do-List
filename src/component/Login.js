@@ -17,7 +17,7 @@ const Login = () => {
     const submitHandler=(event)=>{
         setLoading(true);
         event.preventDefault();
-    axios.post('https://mern-api-lake.vercel.app/user/login',{
+    axios.post('http://localhost:3000/user/login',{
         userName:userName,
         password:password,
         
