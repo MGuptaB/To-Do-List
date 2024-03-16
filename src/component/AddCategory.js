@@ -23,7 +23,7 @@ const AddCategory = () => {
      const formData = new FormData();
      formData.append('name',category);
      formData.append('photo',selectedFile);
-     axios.post('http://localhost:3000/category',formData,{
+     axios.post('https://mern-api-jarc.onrender.com/category',formData,{
       
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),

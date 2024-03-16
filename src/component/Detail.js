@@ -14,7 +14,7 @@ const Detail = () => {
    console.log(params.id);
     useEffect(()=>{
         setLoading(true);
-           axios.get('http://localhost:3000/category/'+ params.id)
+           axios.get('https://mern-api-jarc.onrender.com/category/'+ params.id)
            .then(res=>{
             console.log(res.data.category);
             setCategory(res.data.category);

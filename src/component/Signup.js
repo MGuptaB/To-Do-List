@@ -17,7 +17,7 @@ const Signup = () => {
     const submitHandler=(event)=>{
         setLoading(true);
         event.preventDefault();
-    axios.post('http://localhost:3000/user/signup',{
+    axios.post('https://mern-api-jarc.onrender.com/user/signup',{
         userName:userName,
         password:password,
         email:email,

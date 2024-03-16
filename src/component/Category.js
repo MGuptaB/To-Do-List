@@ -19,7 +19,7 @@ const Category = () => {
 const deleteRouter =(id,image)=>{
   if(window.confirm('Are You Sure?'))
 {
-     axios.delete('http://localhost:3000/category?id='+id+'&imageUrl='+image)
+     axios.delete('https://mern-api-jarc.onrender.com/category?id='+id+'&imageUrl='+image)
      .then(res=>{
        console.log(res);
        getData();
@@ -32,7 +32,7 @@ const deleteRouter =(id,image)=>{
 }
 const getData=  ()=>{
   console.log(localStorage.getItem('token'))
-   axios.get('http://localhost:3000/category', {
+   axios.get('https://mern-api-jarc.onrender.com/category', {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
